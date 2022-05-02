@@ -15,4 +15,6 @@ RUN dotnet publish -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+ENV DATABASE__NAME="DockerDatabase"
+ENV APIURL="https://pokeapi.co/api/v2/"
 ENTRYPOINT dotnet simpleApi.dll
