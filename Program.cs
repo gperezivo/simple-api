@@ -58,7 +58,7 @@ app.MapGet("/sql", async (HttpContext ctx, IConfiguration config)  => {
         var command = new SqlCommand("SELECT * FROM sys.tables", connection);
         var reader = await command.ExecuteReaderAsync();
         var result = new List<dynamic>();
-        while (reader.Read())
+        while (await reader.ReadAsync())
         {
             result.Add(new {
                 Id= reader.GetInt32(0),
@@ -68,6 +68,15 @@ app.MapGet("/sql", async (HttpContext ctx, IConfiguration config)  => {
         return new {
             SqlResponse= result,
             version=version
+        };
+    }
+);
+app.MapGet("/ip",
+    (HttpContext ctx, IConfiguration config)  => {
+        var ip = ctx.Connection.RemoteIpAddress.ToString();
+        
+        return new {
+            Ip= ip
         };
     }
 );

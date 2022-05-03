@@ -41,3 +41,7 @@ select * from sys.tables
 Calls to external API and return results.
 The Api Url is read from the appsettings.json file and environment variable `APIURL`
 
+## /ip 
+
+Returns the request IP address.
+
