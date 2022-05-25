@@ -35,7 +35,7 @@ jobs:
           mkdir /tmp/release
           cp -r ./deploy/k8s /tmp/release/k8s 
           cp version.properties /tmp/release/version.properties
-          tar cvpzf release-${{ env.IMAGE_VERSION }}.tgz /tmp/release/ --exclude '.*'
+          tar cvpzf release-${{ env.IMAGE_VERSION }}.tgz /tmp/release/ 
           gh release create ${{ env.IMAGE_VERSION }} --generate-notes release-${{ env.IMAGE_VERSION }}.tgz
 
       - name: Build and push
