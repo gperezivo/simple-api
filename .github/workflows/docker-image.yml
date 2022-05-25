@@ -35,14 +35,17 @@ jobs:
           push: true
           tags: gperezivo/simple-api:${{ env.IMAGE_VERSION }}
 
-      
-      - name: actions/upload-artifact@v3
-        uses: actions/upload-artifact@v3
-        with:
-          name: app
-          path: |
-            deploy/k8s/*
-            version.properties
+      - run: | 
+          cp deploy/k8s ./release/k8s 
+          cp version.properties ./release/version.properties
+          gh release create ${{ env.IMAGE_VERSION }} --generate-notes ./release/*
+      # - name: actions/upload-artifact@v3
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: app
+      #     path: |
+      #       deploy/k8s/*
+      #       version.properties
       - run: |
           curl \
           -X POST \
