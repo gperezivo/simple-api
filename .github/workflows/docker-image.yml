@@ -13,6 +13,7 @@ jobs:
     steps:
       - name: Set version properties
         run: | 
+          ls -la
           IMAGE_VERSION=$(cat version.properties)
           echo "IMAGE_VERSION=$IMAGE_VERSION" >> $GITHUB_ENV
       - name: Set up QEMU
