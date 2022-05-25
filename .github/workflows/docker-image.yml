@@ -28,13 +28,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          push: true
-          tags: gperezivo/simple-api:${{ env.IMAGE_VERSION }}
-
+     
       - run: | 
           echo "${{ secrets.GITHUB_TOKEN }}" > .githubtoken
           gh auth login --with-token < .githubtoken
@@ -42,6 +36,13 @@ jobs:
           cp -r ./deploy/k8s /tmp/release/k8s 
           cp version.properties /tmp/release/version.properties
           gh release create ${{ env.IMAGE_VERSION }} --generate-notes /tmp/release/*
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: gperezivo/simple-api:${{ env.IMAGE_VERSION }}
+
 
       # - name: actions/upload-artifact@v3
       #   uses: actions/upload-artifact@v3
