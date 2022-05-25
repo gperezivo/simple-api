@@ -54,3 +54,5 @@ jobs:
           -H "Authorization: token ${{ secrets.REPO_ACCESS_TOKEN }}" \
           https://api.github.com/repos/gperezivo/kind-arc-gitops/dispatches \
           -d '{"event_type":"pr_new_version","client_payload":{"app":"simple-api","version":"${{ env.IMAGE_VERSION }}" }}'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
