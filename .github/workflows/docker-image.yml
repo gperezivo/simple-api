@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
      
       - run: | 
-          echo "${{ secrets.GITHUB_TOKEN }}" > .githubtoken
+          echo "${{ secrets.RELEASE_ACCESS_TOKEN }}" > .githubtoken
           gh auth login --with-token < .githubtoken
           mkdir /tmp/release
           cp -r ./deploy/k8s /tmp/release/k8s 
