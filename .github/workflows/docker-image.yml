@@ -41,8 +41,7 @@ jobs:
           cp -r ./deploy/k8s /tmp/release/k8s 
           cp version.properties /tmp/release/version.properties
           gh release create ${{ env.IMAGE_VERSION }} --generate-notes /tmp/release/*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
       # - name: actions/upload-artifact@v3
       #   uses: actions/upload-artifact@v3
       #   with:
