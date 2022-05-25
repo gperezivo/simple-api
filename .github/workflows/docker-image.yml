@@ -34,3 +34,16 @@ jobs:
         with:
           push: true
           tags: gperezivo/simple-api:${{ env.IMAGE_VERSION }}
+
+      
+      - name: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3
+        with:
+          name: app
+          path: |
+            deploy/k8s/*
+            version.properties
+          target_path: /apps
+
+
+
