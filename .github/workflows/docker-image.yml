@@ -36,6 +36,7 @@ jobs:
           tags: gperezivo/simple-api:${{ env.IMAGE_VERSION }}
 
       - run: | 
+          echo "$GITHUB_TOKEN" | gh auth login --with-token
           mkdir /tmp/release
           cp -r ./deploy/k8s /tmp/release/k8s 
           cp version.properties /tmp/release/version.properties
