@@ -36,12 +36,13 @@ jobs:
           tags: gperezivo/simple-api:${{ env.IMAGE_VERSION }}
 
       - run: | 
-          echo "${{ env.GITHUB_TOKEN }}" | gh auth login --with-token
+          echo "${{ secrets.GITHUB_TOKEN }}" > .githubtoken
+          gh auth login --with-token < .githubtoken
           mkdir /tmp/release
           cp -r ./deploy/k8s /tmp/release/k8s 
           cp version.properties /tmp/release/version.properties
           gh release create ${{ env.IMAGE_VERSION }} --generate-notes /tmp/release/*
-        
+
       # - name: actions/upload-artifact@v3
       #   uses: actions/upload-artifact@v3
       #   with:
