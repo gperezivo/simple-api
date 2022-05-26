@@ -30,9 +30,7 @@ spec:
             fieldRef:
               fieldPath: metadata.labels.version
         - name: MyVar2
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
+          value: "My new value"
 ---
 apiVersion: v1
 kind: Service
