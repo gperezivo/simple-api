@@ -40,7 +40,6 @@ metadata:
   name: simple-api
   labels:
     app: simple-api
-    version: dev
 spec:
   selector:
     app: simple-api-pod
