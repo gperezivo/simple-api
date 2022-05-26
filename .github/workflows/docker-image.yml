@@ -33,10 +33,10 @@ jobs:
           echo "${{ secrets.RELEAE_ACCESS_TOKEN }}" > .githubtoken
           gh auth login --with-token < .githubtoken
           mkdir /tmp/release
-          cp -r ./deploy/k8s /tmp/release
+          cp -r ./deploy/k8s/* /tmp/release
           cp version.properties /tmp/release/version.properties
           ls -la /tmp/release
-          tar czvf release-${{ env.IMAGE_VERSION }}.tgz -C /tmp/release
+          tar czvf release-${{ env.IMAGE_VERSION }}.tgz -C /tmp/release .
           gh release create ${{ env.IMAGE_VERSION }} --generate-notes release-${{ env.IMAGE_VERSION }}.tgz
 
       - name: Build and push
