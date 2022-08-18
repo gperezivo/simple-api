@@ -26,9 +26,7 @@ spec:
         - containerPort: 80
         env:
         - name: MyVar
-          valueFrom: 
-            fieldRef:
-              fieldPath: metadata.labels.version
+          value: "My Var"
         - name: MyVar2
           value: "My new value"
 ---
