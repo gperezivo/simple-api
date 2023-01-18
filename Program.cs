@@ -81,9 +81,10 @@ app.MapGet("/ip",
     }
 );
 app.MapGet("/sort",
-    (HttpContext ctx, IConfiguration config) => {
+    (HttpContext ctx, IConfiguration config, int count) => {
         // Create an array of 1000 randoms ints
-        var randoms = new int[100000];
+        if(count==0) count=1000;
+        var randoms = new int[count];
         for (int i = 0; i < randoms.Length; i++)
         {
             randoms[i] = new Random().Next(0, 1000);
